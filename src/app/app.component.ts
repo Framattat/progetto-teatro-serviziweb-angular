@@ -12,22 +12,38 @@ export class AppComponent {
   accesso(key: string) {
     if (key != '') {
       console.log('Non sono vuoto!');
-      if (this.db.getDb(key) != null) {
-        this.db.getDb(key).subscribe({
-          next: (res: any) => {
+      this.db.getDb(key).subscribe({
+        next: (res: any) => {
+          if (res == null) {
             console.log(res);
-          },
-          error: (error) => {
-            console.error(
-              'Accesso ha generato un errore: ' + JSON.stringify(error)
-            );
-          },
-        });
-      } else {
-        console.log('chiave non settata');
-      }
+            this.imposta_teatro(key);
+            return;
+          } else {
+            console.log(res);
+          }
+        },
+        error: (error) => {
+          console.error(
+            'Accesso ha generato un errore: ' + JSON.stringify(error)
+          );
+        },
+      });
     } else {
       console.log('non hai inserito una chiave');
     }
+  }
+
+  imposta_teatro(key: string) {
+    this.db.setDb(key, 'Ora sono settato').subscribe({
+      next: (res: any) => {
+        this.accesso(key);
+        return;
+      },
+      error: (error) => {
+        console.error(
+          'Imposta_teatro ha generato un errore: ' + JSON.stringify(error)
+        );
+      },
+    });
   }
 }

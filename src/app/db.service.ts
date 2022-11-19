@@ -22,7 +22,7 @@ export class DbService {
     return this.http.get<string>(this.URL + 'get?key=' + key);
   }
   public setDb(key: string, body): Observable<string> {
-    console.log('la set' + key);
+    console.log('la set: ' + key);
     //il metodo della set è post, fornisco anche body, endpoint set
     return this.http.post<string>(this.URL + 'set?key=' + key, body);
   }
