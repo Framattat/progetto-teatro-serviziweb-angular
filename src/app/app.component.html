@@ -1,3 +1,8 @@
 <p>Start editing to see some magic happeng :)</p>
+
+<input type="text" #key />
+<button (click)="accesso(key.value); key.value = ''">Bottone Get</button>
+<div #avviso></div>
+
 <app-posto> </app-posto>
 <app-nominativo></app-nominativo>

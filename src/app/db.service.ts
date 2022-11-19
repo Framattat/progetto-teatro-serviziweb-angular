@@ -15,9 +15,10 @@ export class DbService {
   constructor(private http: HttpClient) {}
 
   public getDb(key: string): Observable<string> {
-    console.log('la get' + key);
+    console.log('la get: ' + key);
     //metodo get endpoint get
     // specifico get<string> perché è un metodo overloaded mi restituisce diversi tipi di risultati
+    console.log(this.http.get<string>(this.URL + 'get?key=' + key));
     return this.http.get<string>(this.URL + 'get?key=' + key);
   }
   public setDb(key: string, body): Observable<string> {
