@@ -14,13 +14,7 @@ export class AppComponent {
       console.log('Non sono vuoto!');
       this.db.getDb(key).subscribe({
         next: (res: any) => {
-          if (res == null) {
-            console.log(res);
-            this.imposta_teatro(key);
-            return;
-          } else {
-            console.log(res);
-          }
+          console.log(res);
         },
         error: (error) => {
           console.error(
@@ -31,19 +25,5 @@ export class AppComponent {
     } else {
       console.log('non hai inserito una chiave');
     }
-  }
-
-  imposta_teatro(key: string) {
-    this.db.setDb(key, 'Ora sono settato').subscribe({
-      next: (res: any) => {
-        this.accesso(key);
-        return;
-      },
-      error: (error) => {
-        console.error(
-          'Imposta_teatro ha generato un errore: ' + JSON.stringify(error)
-        );
-      },
-    });
   }
 }
