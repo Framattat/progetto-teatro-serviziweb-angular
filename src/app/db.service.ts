@@ -6,22 +6,23 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class dbService {
+export class DbService {
   // definisco la URL per la connessione al db
   URL: string =
     'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
 
-  // rendo disponibile i metodi
+  // rendo disponibile i metodi della classe httpclient
   constructor(private http: HttpClient) {}
 
   public getDb(key: string): Observable<string> {
     console.log('la get' + key);
     //metodo get endpoint get
+    // specifico get<string> perché è un metodo overloaded mi restituisce diversi tipi di risultati
     return this.http.get<string>(this.URL + 'get?key=' + key);
   }
   public setDb(key: string, body): Observable<string> {
     console.log('la set' + key);
-    //il metodo della set è post, fornisco anche body
+    //il metodo della set è post, fornisco anche body, endpoint set
     return this.http.post<string>(this.URL + 'set?key=' + key, body);
   }
   public newDb(): Observable<string> {
