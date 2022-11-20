@@ -17,7 +17,7 @@ export class AppComponent {
 
   avviso: string = '';
   stato: number = 0;
-  teatro: teatro = {
+  teatro: any = {
     platea: [[],[]],
     palco: [[],[]]
   };
