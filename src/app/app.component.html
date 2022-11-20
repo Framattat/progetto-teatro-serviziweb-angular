@@ -1,8 +1,9 @@
-<p>Start editing to see some magic happeng :)</p>
-
-<input type="text" #key />
-<button (click)="accesso(key.value); key.value = ''">Bottone Get</button>
-<div #avviso></div>
-
-<app-posto> </app-posto>
+<h1>Teatro</h1>
+<div style="margin-bottom: 20px;">
+  <h3>Accesso iniziale</h3>
+  <input type="text" placeholder="Inserisci la chiave" #key />
+  <button (click)="accesso(key.value); key.value = ''">Conferma</button>
+</div>
 <app-nominativo></app-nominativo>
+<app-posto> </app-posto>
+<div>{{avviso}}</div>
