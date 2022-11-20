@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { DbService } from './db.service';
 
-interface teatro{
-  platea: number [][],
-  palco: number [][]
-}
-
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
