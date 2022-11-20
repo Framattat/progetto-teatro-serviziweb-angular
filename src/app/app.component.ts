@@ -10,11 +10,14 @@ export class AppComponent {
   constructor(private db: DbService) {}
 
   avviso: string = '';
+  chiave: string ="";
   stato: number = 0;
+  teatro_export: any = "";
   teatro: any = {
     platea: [[], []],
     palco: [[], []],
   };
+
   costruzione_teatro(
     f_platea: number = 7,
     p_platea: number = 10,
@@ -40,12 +43,17 @@ export class AppComponent {
           this.avviso = '';
           // procedo con il prossimo component
           this.stato = 1;
+          
           // se la chiave non ha un teatro impostato, lo imposto
           if (res == null) {
-            this.costruzione_teatro();
+            this.teatro = this.costruzione_teatro();
             this.imposta_teatro(key, this.teatro);
             this.accesso(key);
           } else {
+            this.chiave = key;
+            this.teatro_export = res;
+            console.log('io sono res: ' + this.teatro_export);
+            console.log('io sono il teatro: ' + this.teatro);
             console.log('tutto ok');
           }
         },
