@@ -1,9 +1,11 @@
 <h1>Teatro</h1>
-<div style="margin-bottom: 20px;">
+<div *ngIf="stato == 0" style="margin-bottom: 20px;">
   <h3>Accesso iniziale</h3>
   <input type="text" placeholder="Inserisci la chiave" #key />
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
+  
 </div>
-<app-nominativo></app-nominativo>
-<app-posto> </app-posto>
-<div>{{avviso}}</div>
+<app-nominativo *ngIf="stato == 1"></app-nominativo>
+<app-posto *ngIf="stato == 2"> </app-posto>
+{{stato}}
+<div>{{ avviso }}</div>

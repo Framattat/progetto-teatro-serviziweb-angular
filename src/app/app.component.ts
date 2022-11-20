@@ -11,6 +11,7 @@ export class AppComponent {
 
   teatro: string = ' ';
   avviso: string = '';
+  stato: number = 0;
 
   accesso(key: string) {
     if (key != '') {
@@ -18,6 +19,7 @@ export class AppComponent {
       this.db.getDb(key).subscribe({
         next: (res: any) => {
           this.avviso = '';
+          this.stato = 1;
           if (res == null) {
             console.log(res);
             this.imposta_teatro(key);
