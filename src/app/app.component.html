@@ -1,11 +1,13 @@
 <h1>Teatro</h1>
+
 <div *ngIf="stato == 0" style="margin-bottom: 20px;">
+  <strong>accesso</strong>
   <h3>Accesso iniziale</h3>
   <input type="text" placeholder="Inserisci la chiave" #key />
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
   -1ffb6b58
 </div>
-<app-nominativo *ngIf="stato == 2" ></app-nominativo>
-<app-posto *ngIf="stato == 1" [teatro_export] = "teatro_export"> </app-posto>
+<app-nominativo *ngIf="stato == 1" ></app-nominativo>
+<app-posto *ngIf="stato == 2" [teatro_export] = "teatro_export"> </app-posto>
 {{stato}}
 <div>{{ avviso }}</div>
