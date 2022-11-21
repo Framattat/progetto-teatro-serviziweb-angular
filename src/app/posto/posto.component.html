@@ -10,7 +10,7 @@
     <button
       *ngFor="let posti of file; index as h"
       [style.color]="posti !== 'x' ? 'red' : 'green'"
-      (click)="test_2(i, h, 'platea')"
+      (click)="prenotazione_posto(i, h, 'platea')"
     >
       P {{ i + 1 }}{{ h }}
     </button>
@@ -20,7 +20,7 @@
     <button
       *ngFor="let posti of file; index as h"
       [style.color]="posti !== 'x' ? 'red' : 'green'"
-      (click)="test_2(i, h, 'palco')"
+      (click)="prenotazione_posto(i, h, 'palco')"
     >
       P {{ i + 1 }}{{ h }}
     </button>
