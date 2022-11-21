@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostoComponent implements OnInit {
   @Input() teatro_export: any;
+  @Input() nominativo: string;
   teatro: any;
   platea: any;
   palco: any;

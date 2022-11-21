@@ -9,8 +9,9 @@ export class NominativoComponent implements OnInit {
   constructor(private db: DbService) {}
   @Input() key: string;
   avviso: string;
-  stato: number;
+  stato: number = 1;
   teatro_export: string;
+  nominativo: string = '';
 
   teatro: any = {
     platea: [[], []],
@@ -34,29 +35,29 @@ export class NominativoComponent implements OnInit {
 
   //funzione per l'accesso al teatro
   controllo_accesso() {
-      this.db.getDb(this.key).subscribe({
-        next: (res: any) => {
-          // se la chiave non ha un teatro impostato, lo imposto
-          if (res == null) {
-            this.teatro = this.costruzione_teatro();
-            this.imposta_teatro(this.key, this.teatro);
-            this.controllo_accesso();
-          } else {
-            this.teatro_export = res;
-            console.log('io sono res: ' + this.teatro_export);
-            console.log('io sono il teatro: ' + this.teatro);
-          }
-          // resetto l'avviso
-          this.avviso = '';
-          // procedo con il prossimo component
-          this.stato = 2;
-        },
-        error: (error) => {
-          console.error(
-            'Controllo accesso ha generato un errore: ' + JSON.stringify(error)
-          );
-        },
-      });
+    this.db.getDb(this.key).subscribe({
+      next: (res: any) => {
+        // se la chiave non ha un teatro impostato, lo imposto
+        if (res == null) {
+          this.teatro = this.costruzione_teatro();
+          this.imposta_teatro(this.key, this.teatro);
+          this.controllo_accesso();
+        } else {
+          this.teatro_export = res;
+          console.log('io sono res: ' + this.teatro_export);
+          console.log('io sono il teatro: ' + this.teatro);
+        }
+        // resetto l'avviso
+        this.avviso = '';
+        // procedo con il prossimo component
+        this.stato = 2;
+      },
+      error: (error) => {
+        console.error(
+          'Controllo accesso ha generato un errore: ' + JSON.stringify(error)
+        );
+      },
+    });
   }
   // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
   imposta_teatro(key: string, teatro) {
