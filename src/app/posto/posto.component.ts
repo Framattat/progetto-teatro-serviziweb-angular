@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {DbService} from "../db.service";
 @Component({
   selector: 'app-posto',
   templateUrl: './posto.component.html',
@@ -13,7 +14,7 @@ export class PostoComponent implements OnInit {
   palco: any;
   stato: number = 2;
   avviso: string = '';
-  constructor() {}
+  constructor(private db: DbService) {}
 
   test(fila: number, posto: number) {
     if (this.teatro.platea[fila][posto] == 'x') {
@@ -22,6 +23,20 @@ export class PostoComponent implements OnInit {
     } else {
       this.avviso = 'Posto occupato da: ' + this.nominativo_teatro;
     }
+  }
+
+  // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
+  imposta_teatro(teatro) {
+    this.db.setDb(this.key, teatro).subscribe({
+      next: () => {
+        console.log('Teatro impostato');
+      },
+      error: (error) => {
+        console.error(
+          'Imposta_teatro ha generato un errore: ' + JSON.stringify(error)
+        );
+      },
+    });
   }
 
   ngOnInit() {
