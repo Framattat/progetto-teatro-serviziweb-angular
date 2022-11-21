@@ -17,7 +17,7 @@ export class PostoComponent implements OnInit {
   avviso: string = '';
   constructor(private db: DbService) {}
 
-  prenotazione_posto(fila: number, posto: number, zona: string = '') {
+  prenotazione_posto(fila: number, posto: number, zona: string) {
     switch (zona) {
       case 'platea': {
         if (this.teatro.platea[fila][posto] == 'x') {
@@ -43,6 +43,10 @@ export class PostoComponent implements OnInit {
     this.aggiorna_teatro(this.teatro);
     this.stato = 1;
     this.avviso = '';
+  }
+
+  test_2(x_1, x_2, x_3) {
+    console.log(x_1, x_2, x_3);
   }
 
   // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
