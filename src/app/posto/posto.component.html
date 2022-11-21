@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="stato == 2">
   <strong>accesso>nominativo>prenotazione</strong>
   <h3>Scelta del posto nel teatro</h3>
   <h2>Platea</h2>
@@ -7,6 +7,7 @@
     <button
       *ngFor="let posti of file; index as h"
       [style.color]="posti !== 'x' ? 'red' : 'green'"
+      (click)="test(i, h)"
     >
       P {{ i + 1 }}{{ h }}
     </button>
@@ -20,4 +21,12 @@
       P {{ i + 1 }}{{ h }}
     </button>
   </div>
+  {{ stato }}
 </div>
+<app-nominativo
+  *ngIf="stato == 1"
+  [nominativo_teatro]="nominativo_teatro"
+  [key]="key"
+>
+</app-nominativo>
+<div>{{ avviso }}</div>
