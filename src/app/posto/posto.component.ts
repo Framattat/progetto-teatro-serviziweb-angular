@@ -17,13 +17,16 @@ export class PostoComponent implements OnInit {
   avviso: string = '';
   constructor(private db: DbService) {}
 
-  prenotazione_posto(fila: number, posto: number, zona) {
-    console.log(zona);
+  prenotazione_posto(fila: number, posto: number, zona: string = "") {
     if (
       this.teatro.platea[fila][posto] == 'x' ||
-      this.teatro.platea[fila][posto] == this.nominativo_teatro
+      this.teatro.palco[fila][posto] == 'x'
     ) {
-      this.teatro.platea[fila][posto] = this.nominativo_teatro;
+      if (zona == 'platea') {
+        this.teatro.platea[fila][posto] = this.nominativo_teatro;
+      } else {
+        this.teatro.palco[fila][posto] = this.nominativo_teatro;
+      }
       this.aggiorna_teatro(this.teatro);
       this.stato = 1;
       this.avviso = '';
