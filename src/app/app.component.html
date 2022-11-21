@@ -7,7 +7,6 @@
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
   -1ffb6b58
 </div>
-<app-nominativo *ngIf="stato == 1" ></app-nominativo>
-<app-posto *ngIf="stato == 2" [teatro_export] = "teatro_export"> </app-posto>
-{{stato}}
+<app-nominativo *ngIf="stato == 1" [key]="key"></app-nominativo>
+{{ stato }}
 <div>{{ avviso }}</div>

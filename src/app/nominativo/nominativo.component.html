@@ -1,6 +1,7 @@
-<div style="margin-bottom:20px;">
+<div *ngIf="stato == 1" style="margin-bottom:20px;">
   <strong>accesso>nominativo</strong>
   <h3>Inserimento nominativo</h3>
   <input type="text" placeholder="Inserisci il nominativo" />
   <button>Conferma</button>
 </div>
+<app-posto *ngIf="stato == 2" [teatro_export]="teatro_export"> </app-posto>
