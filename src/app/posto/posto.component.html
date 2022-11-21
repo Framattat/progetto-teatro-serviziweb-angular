@@ -1,7 +1,9 @@
 <div *ngIf="stato == 2">
   <strong>:accesso>nominativo>prenotazione</strong>
   <h4>Scegli il posto nel teatro, il colore rosso indica un posto occupato</h4>
-  <p>Stai prenotando al nome: {{ nominativo_teatro }}</p>
+  <p>
+    Stai prenotando al nome: <strong>{{ nominativo_teatro }}</strong>
+  </p>
   <h2>Platea</h2>
   <!-- Per ogni fila della platea/palco, genero un bottone per ogni posto della fila, se il posto non ha prenotazioni (e quindi ha il simbolo "x") è libero (e di colore verde) se il posto è prenotato è rosso  -->
   <div *ngFor="let file of platea; index as i">
