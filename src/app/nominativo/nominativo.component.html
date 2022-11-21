@@ -1,21 +1,19 @@
 <div *ngIf="stato == 1" style="margin-bottom:20px;">
-  <strong>accesso>nominativo</strong>
-  <h3>Inserimento nominativo</h3>
-  <strong *ngIf="nominativo_teatro != undefined">
-    Prenotazione effettuata a nome: {{ nominativo_teatro }}
-  </strong>
-  <br />
+  <strong>:accesso>nominativo</strong>
+  <h4>Prenota il tuo posto inserendo il nome e premendo conferma</h4>
+  <div *ngIf="nominativo_teatro != undefined">
+    <strong>Prenotazione effettuata a nome: {{ nominativo_teatro }}</strong>
+    <br />
+  </div>
   <input type="text" placeholder="Inserisci il nominativo" #nome />
   <button (click)="controllo_accesso(nome.value); nome.value = ''">
     Conferma
   </button>
-  {{ stato }}
 </div>
-{{ avviso }}
 <app-posto
   *ngIf="stato == 2"
   [nominativo_teatro]="nominativo_teatro"
   [teatro_export]="teatro_export"
   [key]="key"
->
-</app-posto>
+></app-posto>
+<div>{{ avviso }}</div>
