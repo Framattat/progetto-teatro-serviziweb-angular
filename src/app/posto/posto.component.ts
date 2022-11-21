@@ -17,19 +17,23 @@ export class PostoComponent implements OnInit {
   avviso: string = '';
   constructor(private db: DbService) {}
 
-  test(fila: number, posto: number) {
-    if (this.teatro.platea[fila][posto] == 'x') {
+  prenotazione_posto(fila: number, posto: number, zona) {
+    console.log(zona);
+    if (
+      this.teatro.platea[fila][posto] == 'x' ||
+      this.teatro.platea[fila][posto] == this.nominativo_teatro
+    ) {
       this.teatro.platea[fila][posto] = this.nominativo_teatro;
-      console.log('boh');
-      this.imposta_teatro(this.teatro);
-      //this.stato = 1;
+      this.aggiorna_teatro(this.teatro);
+      this.stato = 1;
+      this.avviso = '';
     } else {
-      this.avviso = 'Posto occupato da: ' + this.nominativo_teatro;
+      this.avviso = 'Posto occupato da: ' + this.teatro.platea[fila][posto];
     }
   }
 
   // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
-  imposta_teatro(teatro) {
+  aggiorna_teatro(teatro) {
     this.db.setDb(this.key, teatro).subscribe({
       next: () => {
         console.log('Teatro impostato');
