@@ -17,22 +17,32 @@ export class PostoComponent implements OnInit {
   avviso: string = '';
   constructor(private db: DbService) {}
 
-  prenotazione_posto(fila: number, posto: number, zona: string = "") {
-    if (
-      this.teatro.platea[fila][posto] == 'x' ||
-      this.teatro.palco[fila][posto] == 'x'
-    ) {
-      if (zona == 'platea') {
-        this.teatro.platea[fila][posto] = this.nominativo_teatro;
-      } else {
-        this.teatro.palco[fila][posto] = this.nominativo_teatro;
+  prenotazione_posto(fila: number, posto: number, zona: string = '') {
+    switch (zona) {
+      case 'platea': {
+        if (this.teatro.platea[fila][posto] == 'x') {
+          this.teatro.platea[fila][posto] = this.nominativo_teatro;
+        } else {
+          this.avviso = 'Posto occupato da: ' + this.teatro.platea[fila][posto];
+          return;
+        }
+        break;
       }
-      this.aggiorna_teatro(this.teatro);
-      this.stato = 1;
-      this.avviso = '';
-    } else {
-      this.avviso = 'Posto occupato da: ' + this.teatro.platea[fila][posto];
+      case 'palco': {
+        if (this.teatro.palco[fila][posto] == 'x') {
+          this.teatro.palco[fila][posto] = this.nominativo_teatro;
+        } else {
+          this.avviso = 'Posto occupato da: ' + this.teatro.palco[fila][posto];
+          return;
+        }
+        break;
+      }
+      default:
+        this.avviso = 'Non stai scegliendo ne la platea ne il palco!';
     }
+    this.aggiorna_teatro(this.teatro);
+    this.stato = 1;
+    this.avviso = '';
   }
 
   // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
