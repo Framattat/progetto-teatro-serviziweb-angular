@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {DbService} from "../db.service";
+import { DbService } from '../db.service';
+
 @Component({
   selector: 'app-posto',
   templateUrl: './posto.component.html',
@@ -19,7 +20,9 @@ export class PostoComponent implements OnInit {
   test(fila: number, posto: number) {
     if (this.teatro.platea[fila][posto] == 'x') {
       this.teatro.platea[fila][posto] = this.nominativo_teatro;
-      this.stato = 1;
+      console.log('boh');
+      this.imposta_teatro(this.teatro);
+      //this.stato = 1;
     } else {
       this.avviso = 'Posto occupato da: ' + this.nominativo_teatro;
     }
