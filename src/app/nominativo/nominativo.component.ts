@@ -24,13 +24,14 @@ export class NominativoComponent implements OnInit {
     f_palco: number = 4,
     p_palco: number = 6
   ) {
+    var teatro_temp;
     this.teatro.platea = Array(f_platea)
       .fill('')
       .map(() => Array(p_platea).fill('x'));
     this.teatro.palco = Array(f_palco)
       .fill('')
       .map(() => Array(p_palco).fill('x'));
-    console.log(this.teatro);
+    return teatro_temp=this.teatro;
   }
 
   //funzione per l'accesso al teatro
