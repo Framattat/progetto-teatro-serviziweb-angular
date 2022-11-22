@@ -47,10 +47,6 @@ export class PostoComponent implements OnInit {
     this.avviso = '';
   }
 
-  test_2(x_1, x_2, x_3) {
-    console.log(x_1, x_2, x_3);
-  }
-
   // funzione per impostare il teatro in base al teatro scelto, se il campo non viene specificato si usa il teatro base
   aggiorna_teatro(teatro) {
     this.db.setDb(this.key, teatro).subscribe({
