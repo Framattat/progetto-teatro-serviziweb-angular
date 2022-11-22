@@ -1,4 +1,3 @@
-
 # Prenotazioni teatro angular14+ - Progetto SSW2022
 
 > Chiave per l'accesso al teatro: 73fd4c2c
