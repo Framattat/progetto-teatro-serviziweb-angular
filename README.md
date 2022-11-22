@@ -40,8 +40,14 @@ Partendo dalla cartella **app** sono presenti:
 Descritti brevemente i component consistono in:
 
 #### app.component
-- Gestisce l'accesso iniziale al teatro in base ad una chiave che l'utente ha o genera attraverso il newteatro.component, vengono gestiti alcuni errori come la non esistenza della chiave o il non inserimento del campo prima di premere il bottone conferma.
-Inoltre, è presente una funzione che permette di aggiornare lo stato (valore che indica la progressione nell'app, 0 indica l'accesso, 1 indica l'inserimento del nominativo e 2 indica la prenotazione del posto) o la chiave scelta in base ad un **Output()** passato dal child newteatro.component.
+- Gestisce l'accesso iniziale al teatro in base ad una chiave che l'utente ha o genera attraverso il **newteatro.component**, vengono gestiti alcuni errori come la non esistenza della chiave o il non inserimento del campo prima di premere il bottone conferma.
+Inoltre, è presente una funzione che permette di aggiornare lo stato (valore che indica la progressione nell'app, **0** indica l'accesso, **1** indica l'inserimento del nominativo e **2** indica la prenotazione del posto) o la chiave scelta in base ad un **@Output()** passato dal child **newteatro.component**.
 
 #### nominativo.component
+- Gestisce l'inserimento del nominativo per la prenotazione, qua viene costruito il teatro default se si passa una chiave non generata da **newteatro.component**, viene impostata la configurazione del teatro scelta sulla chiave passata come **@Input()** da **app.component**. In seguito, quando il posto viene prenotato, ritorniamo sulla stessa pagina html con i dati passati da **posto.component** che sono la tipologia di posto prenotato e il nominativo passato come **@Input()** precedentemente.
 
+#### posto.component
+- Gestisce la prenotazione del posto da parte dell'utente, viene visualizzato il teatro secondo la configurazione scelta precedentemente, si visualizzano i posti liberi (indicati dal colore verde) e quelli occupati (indicati dal colore rosso). Se un utente prova a cliccare su un posto occupato, viene visualizzato un messaggio di avviso, con il nome dell'utente che ha occupato quel dato posto. Una volta scelto e cliccato il posto, torniamo su **nominativo.component** con i dati aggiornati. L'utente potrà prenotare ancora posti inserendo il nominativo scelto.
+
+#### newteatro.component
+- Gestisce la creazione di un teatro, configurato secondo dei criteri (misure minime e massime) pensati per non gravare troppo sulla memoria del database. Comunica sia in **@Input()** che in **@Output()** con **app.component** per la chiave che viene generata e l'aggiornamento dello stato, dopo aver generato un nuovo teatro e una chiave, si settano insieme in modo da poter passare la chiave al **nominativo.component** già impostata e pronta per visualizzare il teatro.
