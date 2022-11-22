@@ -1,4 +1,5 @@
 # progetto-teatro-serviziweb-angular
 
-Chiave partenza: de3ee7d0
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-pxbgrq)
+Chiave partenza: 73fd4c2c
+
+Sarà sviluppata una breve relazione sulle funzioni e le scelte eseguite nel progetto
