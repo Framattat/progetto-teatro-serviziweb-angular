@@ -38,4 +38,12 @@ export class AppComponent {
       this.avviso = 'Non hai inserito una chiave!';
     }
   }
+
+  aggiorna_valore(valore){
+    if (typeof valore == "string"){
+      this.key = valore;
+    } else {
+      this.stato = valore;
+    }
+  }
 }

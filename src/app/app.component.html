@@ -6,7 +6,11 @@
   <input type="text" placeholder="Inserisci la chiave" #key />
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
   -1ffb6b58
-  <app-newteatro [stato]="stato"></app-newteatro>
+  <app-newteatro
+    [stato]="stato"
+    (stato_uscita)="aggiorna_valore($event)"
+    (key_uscita)="aggiorna_valore($event)"
+  ></app-newteatro>
 </div>
 <app-nominativo *ngIf="stato == 1" [key]="key"></app-nominativo>
 <div>{{ avviso }}</div>

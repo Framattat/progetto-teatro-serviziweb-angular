@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DbService } from '../db.service';
 import { NominativoComponent } from '../nominativo/nominativo.component';
 
@@ -11,12 +11,13 @@ export class NewteatroComponent implements OnInit {
   constructor(private db: DbService) {}
 
   @Input() stato: number;
+  @Output() stato_uscita = new EventEmitter<number>();
+  @Output() key_uscita = new EventEmitter<string>();
 
   file: number[] = [2, 3, 4];
   posti: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   teatro_config: number[] = [];
   avviso: string = '';
-  key: string = '';
 
   valore_selezionato(valore, config) {
     switch (config) {
@@ -41,10 +42,6 @@ export class NewteatroComponent implements OnInit {
     }
   }
 
-  check_stato() {
-    console.log('lo stato' + this.stato);
-  }
-
   nuovo_teatro() {
     this.db.newDb().subscribe({
       next: (res: any) => {
@@ -58,8 +55,8 @@ export class NewteatroComponent implements OnInit {
         );
         teatro_costruzione.imposta_teatro(res, teatro_temp);
         this.avviso = '';
-        this.stato = 1;
-        this.key = res;
+        this.stato_uscita.emit(1);
+        this.key_uscita.emit(res);
         console.log(res, teatro_temp);
       },
       error: (error) => {
