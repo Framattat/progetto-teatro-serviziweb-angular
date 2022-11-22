@@ -5,7 +5,7 @@
   <h4>Esegui l'accesso al teatro, inserisci la chiave e premi conferma</h4>
   <input type="text" placeholder="Inserisci la chiave" #key />
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
-  -1ffb6b58
+
   <app-newteatro
     [stato]="stato"
     (stato_uscita)="aggiorna_valore($event)"
