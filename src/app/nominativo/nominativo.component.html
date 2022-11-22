@@ -5,7 +5,10 @@
     con la chiave: {{ key }})
   </h4>
   <div *ngIf="nominativo_teatro != undefined">
-    <strong>Prenotazione effettuata a nome: {{ nominativo_teatro }}</strong>
+    <strong
+      >Prenotazione effettuata a nome: <br />
+      {{ nominativo_teatro }} {{ posto }}</strong
+    >
     <br />
   </div>
   <input type="text" placeholder="Inserisci il nominativo" #nome />

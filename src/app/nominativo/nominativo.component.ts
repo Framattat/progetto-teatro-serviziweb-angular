@@ -9,6 +9,7 @@ export class NominativoComponent implements OnInit {
   constructor(private db: DbService) {}
   @Input() key: string;
   @Input() nominativo_teatro: string;
+  @Input() posto: string;
   avviso: string;
   stato: number = 1;
   teatro_export: string;

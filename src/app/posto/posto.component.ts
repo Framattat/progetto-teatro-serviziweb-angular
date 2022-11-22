@@ -13,6 +13,7 @@ export class PostoComponent implements OnInit {
   teatro: any;
   platea: any;
   palco: any;
+  posto: string = '';
   stato: number = 2;
   avviso: string = '';
   constructor(private db: DbService) {}
@@ -40,6 +41,7 @@ export class PostoComponent implements OnInit {
       default:
         this.avviso = 'Non stai scegliendo ne la platea ne il palco!';
     }
+    this.posto = 'nella zona ' + zona + ' n. P' + (fila + 1) + posto;
     this.aggiorna_teatro(this.teatro);
     this.stato = 1;
     this.avviso = '';
