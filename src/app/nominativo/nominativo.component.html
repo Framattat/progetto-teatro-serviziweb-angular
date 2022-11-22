@@ -1,6 +1,9 @@
 <div *ngIf="stato == 1" style="margin-bottom:20px;">
   <strong>:accesso>nominativo</strong>
-  <h4>Prenota il tuo posto inserendo il nome e premendo conferma</h4>
+  <h4>
+    Prenota il tuo posto inserendo il nome e premendo conferma (Accesso eseguito
+    con la chiave:{{ key }})
+  </h4>
   <div *ngIf="nominativo_teatro != undefined">
     <strong>Prenotazione effettuata a nome: {{ nominativo_teatro }}</strong>
     <br />
