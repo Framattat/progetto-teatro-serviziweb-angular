@@ -40,4 +40,8 @@ Partendo dalla cartella **app** sono presenti:
 Descritti brevemente i component consistono in:
 
 #### app.component
+- Gestisce l'accesso iniziale al teatro in base ad una chiave che l'utente ha o genera attraverso il newteatro.component, vengono gestiti alcuni errori come la non esistenza della chiave o il non inserimento del campo prima di premere il bottone conferma.
+Inoltre, è presente una funzione che permette di aggiornare lo stato (valore che indica la progressione nell'app, 0 indica l'accesso, 1 indica l'inserimento del nominativo e 2 indica la prenotazione del posto) o la chiave scelta in base ad un **Output()** passato dal child newteatro.component.
+
+#### nominativo.component
 
