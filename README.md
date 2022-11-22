@@ -50,4 +50,24 @@ Inoltre, è presente una funzione che permette di aggiornare lo stato (valore ch
 - Gestisce la prenotazione del posto da parte dell'utente, viene visualizzato il teatro secondo la configurazione scelta precedentemente, si visualizzano i posti liberi (indicati dal colore verde) e quelli occupati (indicati dal colore rosso). Se un utente prova a cliccare su un posto occupato, viene visualizzato un messaggio di avviso, con il nome dell'utente che ha occupato quel dato posto. Una volta scelto e cliccato il posto, torniamo su **nominativo.component** con i dati aggiornati. L'utente potrà prenotare ancora posti inserendo il nominativo scelto.
 
 #### newteatro.component
-- Gestisce la creazione di un teatro, configurato secondo dei criteri (misure minime e massime) pensati per non gravare troppo sulla memoria del database. Comunica sia in **@Input()** che in **@Output()** con **app.component** per la chiave che viene generata e l'aggiornamento dello stato, dopo aver generato un nuovo teatro e una chiave, si settano insieme in modo da poter passare la chiave al **nominativo.component** già impostata e pronta per visualizzare il teatro.
+- Gestisce la creazione di un teatro, configurato secondo dei criteri (misure minime e massime) pensati per non gravare troppo sulla memoria del database. Comunica sia in **@Input()** che in **@Output()** con **app.component** per la chiave che viene generata e l'aggiornamento dello stato, dopo aver generato un nuovo teatro e una chiave, si settano insieme in modo da poter passare la chiave al **nominativo.component** già impostata e pronta per visualizzare il teatro. Viene aggiornata dinamicamente la configurazione del teatro grazie alla funzione **valore_selezionato** e non si permette all'utente (grazie alle select) di decidere tale configurazione violando i criteri scelti.
+
+
+### Descrizione generale di alcune funzioni 
+Si menzionano alcune funzioni particolari:
+
+#### controllo_accesso() (situata in nominativo.component.ts)
+- Funzione che prende come parametro il nome dell'utente che esegue la prenotazione ed esegue una get, con la chiave passata come input da **app.component**, se la chiave non ha ancora un teatro settato in essa, si setta con un teatro default (7x10 - 4x6) e si ritorna sulla funzione (viene controllato con un if se la risposta della subscribe è nulla, se non lo è la chiave è settata). dove vengono impostati i dati necessari al passaggio della prenotazione del posto. Viene eseguito anche un controllo sul campo, se è vuoto si 'appende' un avviso.
+
+#### costruzione_teatro() (situata in nominativo.component.ts)
+- Funzione che prende come parametri default le file e posti della platea e del palco, configura il teatro (in base al 'metodo' visto a lezione) e restituisce il teatro così configurato (un oggetto di array di array).
+
+#### prenotazione_posto() (situata in posto.component.ts)
+- Funzione che prende come parametri fila posto e zona scelti dall'utente. In base alla zona (in questo caso platea e palco) lo switch setta il posto scelto dall'utente (cambia il valore default **x** con il nome della prenotazione). Dopodichè, viene aggiornato il teatro con il posto settato e si torna alla pagina del nominativo, con il posto e nominativo visualizzati.
+
+#### valore_selezionato() e nuovo_teatro() (situata in newteatro.component.ts)
+- La funzione **valore_selezionato()** gestisce l'aggiornamento dinamico della configurazione del teatro e ne permette la memorizzazione, ha come parametri il valore selezionato in quel dato momento e la select di provenienza. La funzione **nuovo_teatro()** crea una nuova chiave dove impostare la configurazione scelta da parte dell'utente. Si istanzia la classe NominativoComponent e si richiamano due metodi di essa (**costruzione_teatro(), imposta_teatro()**), così da impostare il teatro scelto sulla chiave appena generata.
+
+## Conclusioni (personali)
+
+Il progetto è stato molto interessante, mi ha permesso di lavorare in un piccolo progetto angular14+ imparando la gestione dinamica di un applicazione web. Il corso è stato molto utile e ho gradito le dispense messe a disposizione dal professore, comprese di registrazioni delle lezioni. 
