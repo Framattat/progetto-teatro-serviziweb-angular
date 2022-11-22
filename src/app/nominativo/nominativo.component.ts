@@ -40,15 +40,12 @@ export class NominativoComponent implements OnInit {
         next: (res: any) => {
           // se la chiave non ha un teatro impostato, lo imposto
           if (res == null) {
-            this.teatro = this.costruzione_teatro();
+            this.costruzione_teatro();
             this.imposta_teatro(this.key, this.teatro);
-            this.controllo_accesso(nome);
-          } else {
-            this.teatro_export = res;
-            this.nominativo_teatro = nome;
-            console.log('io sono res: ' + this.teatro_export);
-            console.log('io sono il teatro: ' + this.teatro);
+            return this.controllo_accesso(nome);
           }
+          this.teatro_export = res;
+          this.nominativo_teatro = nome;
           // resetto l'avviso
           this.avviso = '';
           // procedo con il prossimo component

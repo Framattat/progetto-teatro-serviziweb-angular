@@ -12,7 +12,8 @@ export class NewteatroComponent implements OnInit {
   file: number[] = [2, 3, 4];
   posti: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   teatro_config: number[] = [];
-
+  stato: number = 0;
+  avviso: string ="";
   valore_selezionato(valore, config) {
     switch (config) {
       case 'f_pl': {
@@ -37,7 +38,19 @@ export class NewteatroComponent implements OnInit {
   }
 
   nuovo_teatro() {
-    console.log(this.teatro_config);
+    this.db.newDb().subscribe({
+      next:(res:any)=>{
+        this.avviso ="";
+        //this.stato = 1;
+        console.log(res);
+      },
+      error: (error) =>{
+        this.avviso = "Non sono riuscito a generare il teatro, qualcosa è andato storto";
+        console.error(
+          'Nuovo_teatro ha generato un errore: ' + JSON.stringify(error)
+        );
+      },
+    });
   }
   ngOnInit() {}
 }
