@@ -65,6 +65,5 @@ export class PostoComponent implements OnInit {
     this.teatro = JSON.parse(this.teatro_export);
     this.platea = this.teatro.platea;
     this.palco = this.teatro.palco;
-    console.log(this.teatro);
   }
 }

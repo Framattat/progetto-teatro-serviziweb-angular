@@ -4,8 +4,8 @@
   <p>
     Stai prenotando al nome: <strong>{{ nominativo_teatro }}</strong>
   </p>
-  <h2>Platea</h2>
   <!-- Per ogni fila della platea/palco, genero un bottone per ogni posto della fila, se il posto non ha prenotazioni (e quindi ha il simbolo "x") è libero (e di colore verde) se il posto è prenotato è rosso  -->
+  <h2>Platea</h2>
   <div *ngFor="let file of platea; index as i">
     <button
       *ngFor="let posti of file; index as h"
@@ -30,7 +30,7 @@
   *ngIf="stato == 1"
   [nominativo_teatro]="nominativo_teatro"
   [key]="key"
-  [posto] = "posto"
+  [posto]="posto"
 >
 </app-nominativo>
 <div>{{ avviso }}</div>

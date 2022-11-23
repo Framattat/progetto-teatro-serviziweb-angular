@@ -1,11 +1,9 @@
 <h1>Progetto Teatro Servizi Web2022</h1>
-
 <div *ngIf="stato == 0" style="margin-bottom: 20px;">
   <strong>:accesso</strong>
   <h4>Esegui l'accesso al teatro, inserisci la chiave e premi conferma</h4>
   <input type="text" placeholder="Inserisci la chiave" #key />
   <button (click)="accesso(key.value); key.value = ''">Conferma</button>
-
   <app-newteatro
     [stato]="stato"
     (stato_uscita)="aggiorna_valore($event)"

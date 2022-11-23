@@ -20,20 +20,21 @@ export class NewteatroComponent implements OnInit {
   avviso: string = '';
 
   valore_selezionato(valore, config) {
+    console.log(valore.target.value, config);
     switch (config) {
-      case 'f_pl': {
+      case 'f_platea': {
         this.teatro_config[0] = +valore.target.value;
         break;
       }
-      case 'p_pl': {
+      case 'p_platea': {
         this.teatro_config[1] = +valore.target.value;
         break;
       }
-      case 'f_pa': {
+      case 'f_palco': {
         this.teatro_config[2] = +valore.target.value;
         break;
       }
-      case 'p_pa': {
+      case 'p_palco': {
         this.teatro_config[3] = +valore.target.value;
         break;
       }

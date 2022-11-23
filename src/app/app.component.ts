@@ -17,9 +17,8 @@ export class AppComponent {
   accesso(key: string) {
     //controllo se la stringa key (e il relativo campo) è vuota, popolo il campo in caso di campo vuoto
     if (key != '') {
-      console.log('Non sono vuoto!');
       this.db.getDb(key).subscribe({
-        next: (res: any) => {
+        next: () => {
           // passo la key al prossimo component
           this.key = key;
           // resetto l'avviso
@@ -39,11 +38,7 @@ export class AppComponent {
     }
   }
 
-  aggiorna_valore(valore){
-    if (typeof valore == "string"){
-      this.key = valore;
-    } else {
-      this.stato = valore;
-    }
+  aggiorna_valore(valore) {
+    typeof valore == 'string' ? (this.key = valore) : (this.stato = valore);
   }
 }

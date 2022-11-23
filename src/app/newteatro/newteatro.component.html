@@ -5,30 +5,35 @@
     <strong>2 file di 2 posti ciascuno</strong> e le misure massime sono
     <strong>4 file di 10 posti ciascuno</strong>.
   </p>
-  <select (change)="valore_selezionato($event, 'f_pl')">
-    <option disabled selected>File Platea</option>
-    <option *ngFor="let numero of file" [value]="numero">
-      {{ numero }}
-    </option>
-  </select>
-  <select (change)="valore_selezionato($event, 'p_pl')">
-    <option disabled selected>Posti Platea</option>
-    <option *ngFor="let numero of posti" [value]="numero">
-      {{ numero }}
-    </option>
-  </select>
-  <select (change)="valore_selezionato($event, 'f_pa')">
-    <option disabled selected>File Palco</option>
-    <option *ngFor="let numero of file" [value]="numero">
-      {{ numero }}
-    </option>
-  </select>
-  <select (change)="valore_selezionato($event, 'p_pa')">
-    <option disabled selected>Posti Palco</option>
-    <option *ngFor="let numero of posti" [value]="numero">
-      {{ numero }}
-    </option>
-  </select>
+  <div *ngFor="let config of [file, posti]">
+    <div *ngFor="let zona of ['platea', 'palco']">
+      <select (change)="valore_selezionato($event, 'f_' + zona)">
+        <div *ngIf="config.length == 3; else posti">
+          <option disabled selected>File {{ zona }}</option>
+        </div>
+        <ng-template #posti
+          ><option disabled selected>Posti {{ zona }}</option>
+        </ng-template>
+        <option *ngFor="let numero of config" [value]="numero">
+          {{ numero }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div *ngFor="let zona of ['platea', 'palco']">
+    <select (change)="valore_selezionato($event, 'f_' + zona)">
+      <option disabled selected>File {{ zona }}</option>
+      <option *ngFor="let numero of file" [value]="numero">
+        {{ numero }}
+      </option>
+    </select>
+    <select (change)="valore_selezionato($event, 'p_' + zona)">
+      <option disabled selected>Posti {{ zona }}</option>
+      <option *ngFor="let numero of posti" [value]="numero">
+        {{ numero }}
+      </option>
+    </select>
+  </div>
   <div *ngIf="teatro_config.length == 4">
     <p>
       Vuoi fare un teatro di: <br />
