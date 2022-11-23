@@ -14,31 +14,17 @@ export class NewteatroComponent implements OnInit {
   @Output() stato_uscita = new EventEmitter<number>();
   @Output() key_uscita = new EventEmitter<string>();
 
+  conf: string[] = ['File Platea', 'Posti Platea', 'File Palco', 'Posti Palco'];
   file: number[] = [2, 3, 4];
   posti: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10];
   teatro_config: number[] = [];
   avviso: string = '';
 
-  valore_selezionato(valore, config) {
-    switch (config) {
-      case 'f_platea': {
-        this.teatro_config[0] = +valore.target.value;
-        break;
-      }
-      case 'p_platea': {
-        this.teatro_config[1] = +valore.target.value;
-        break;
-      }
-      case 'f_palco': {
-        this.teatro_config[2] = +valore.target.value;
-        break;
-      }
-      case 'p_palco': {
-        this.teatro_config[3] = +valore.target.value;
-        break;
-      }
-      default:
-        console.log('Valore anomalo');
+  valore_selezionato(valore, config, config_2) {
+    return console.log(valore.target.value, config, config_2);
+    if (config == 'platea') {
+      this.teatro_config[0] = +valore.target.value;
+    } else {
     }
   }
 
@@ -47,10 +33,7 @@ export class NewteatroComponent implements OnInit {
       next: (res: any) => {
         var teatro_costruzione = new NominativoComponent(this.db);
         var teatro_temp = teatro_costruzione.costruzione_teatro(
-          this.teatro_config[0],
-          this.teatro_config[1],
-          this.teatro_config[2],
-          this.teatro_config[3]
+          this.teatro_config
         );
         teatro_costruzione.imposta_teatro(res, teatro_temp);
         this.avviso = '';

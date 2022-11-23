@@ -5,21 +5,30 @@
     <strong>2 file di 2 posti ciascuno</strong> e le misure massime sono
     <strong>4 file di 10 posti ciascuno</strong>.
   </p>
-  <div *ngFor="let config of [file, posti]">
-    <div *ngFor="let zona of ['platea', 'palco']">
-      <select
-        (change)="
-          valore_selezionato($event, (config.length == 3 ? 'f_' : 'p_') + zona)
-        "
-      >
-        <option disabled selected>
-          {{ config.length == 3 ? 'File' : 'Posti' }} {{ zona }}
-        </option>
-        <option *ngFor="let numero of config" [value]="numero">
-          {{ numero }}
-        </option>
-      </select>
-    </div>
+  <div *ngFor="let zona of conf">
+    <select>
+      {{
+        zona
+      }}
+      <option disabled selected></option>
+      <option *ngFor="let numero of conf" [value]="numero">
+        {{ numero }}
+      </option>
+    </select>
+  </div>
+  <div *ngFor="let zona of ['platea', 'palco']">
+    <select
+      (change)="
+        valore_selezionato($event, zona, conf.length == 3 ? 'f_' : 'p_')
+      "
+    >
+      <option disabled selected>
+        {{ conf.length == 3 ? 'File' : 'Posti' }} {{ zona }}
+      </option>
+      <option *ngFor="let numero of conf" [value]="numero">
+        {{ numero }}
+      </option>
+    </select>
   </div>
   <div *ngIf="teatro_config.length == 4">
     <p>

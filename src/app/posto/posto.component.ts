@@ -18,24 +18,21 @@ export class PostoComponent implements OnInit {
   constructor(private db: DbService) {}
 
   prenotazione_posto(fila: number, posto: number, zona: string) {
-    if (zona == 'platea') {
-      if (this.teatro.platea[fila][posto] == 'x') {
-        this.teatro.platea[fila][posto] = this.nominativo_teatro;
-      } else {
-        this.avviso = 'Posto occupato da: ' + this.teatro.platea[fila][posto];
-        return;
-      }
+    var zona_teatro =
+      zona == 'platea'
+        ? this.teatro.platea[fila][posto]
+        : this.teatro.palco[fila][posto];
+    if (zona_teatro == 'x') {
+      zona == 'platea'
+        ? (this.teatro.platea[fila][posto] = this.nominativo_teatro)
+        : (this.teatro.palco[fila][posto] = this.nominativo_teatro);
     } else {
-      if (this.teatro.palco[fila][posto] == 'x') {
-        this.teatro.palco[fila][posto] = this.nominativo_teatro;
-      } else {
-        this.avviso = 'Posto occupato da: ' + this.teatro.palco[fila][posto];
-        return;
-      }
+      this.avviso = 'Posto occupato da: ' + zona_teatro;
+      return;
     }
-    this.posto = 'nella zona ' + zona + ' n. P' + (fila + 1) + posto;
     var teatro_aggiornato = new NominativoComponent(this.db);
     teatro_aggiornato.imposta_teatro(this.key, this.teatro);
+    this.posto = 'nella zona ' + zona + ' n. P' + (fila + 1) + posto;
     this.stato = 1;
     this.avviso = '';
   }
