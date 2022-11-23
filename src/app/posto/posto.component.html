@@ -5,25 +5,17 @@
     Stai prenotando al nome: <strong>{{ nominativo_teatro }}</strong>
   </p>
   <!-- Per ogni fila della platea/palco, genero un bottone per ogni posto della fila, se il posto non ha prenotazioni (e quindi ha il simbolo "x") è libero (e di colore verde) se il posto è prenotato è rosso  -->
-  <h2>Platea</h2>
-  <div *ngFor="let file of platea; index as i">
-    <button
-      *ngFor="let posti of file; index as h"
-      [style.color]="posti !== 'x' ? 'red' : 'green'"
-      (click)="prenotazione_posto(i, h, 'platea')"
-    >
-      P {{ i + 1 }}{{ h }}
-    </button>
-  </div>
-  <h2>Palco</h2>
-  <div *ngFor="let file of palco; index as i">
-    <button
-      *ngFor="let posti of file; index as h"
-      [style.color]="posti !== 'x' ? 'red' : 'green'"
-      (click)="prenotazione_posto(i, h, 'palco')"
-    >
-      P {{ i + 1 }}{{ h }}
-    </button>
+  <div *ngFor="let zona of [teatro.platea, teatro.palco]; index as z">
+    <h2>{{ z == 0 ? 'Platea' : 'Palco' }}</h2>
+    <div *ngFor="let file of zona; index as i">
+      <button
+        *ngFor="let posti of file; index as h"
+        [style.color]="posti !== 'x' ? 'red' : 'green'"
+        (click)="prenotazione_posto(i, h, z == 0 ? 'platea' : 'palco')"
+      >
+        P {{ i + 1 }}{{ h }}
+      </button>
+    </div>
   </div>
 </div>
 <app-nominativo
