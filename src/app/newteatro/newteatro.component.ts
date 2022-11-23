@@ -20,12 +20,8 @@ export class NewteatroComponent implements OnInit {
   teatro_config: number[] = [];
   avviso: string = '';
 
-  valore_selezionato(valore, config, config_2) {
-    return console.log(valore.target.value, config, config_2);
-    if (config == 'platea') {
-      this.teatro_config[0] = +valore.target.value;
-    } else {
-    }
+  valore_selezionato(valore, index) {
+    this.teatro_config[index] = +valore.target.value;
   }
 
   nuovo_teatro() {

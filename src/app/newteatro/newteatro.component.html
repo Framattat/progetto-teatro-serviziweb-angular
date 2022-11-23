@@ -5,27 +5,11 @@
     <strong>2 file di 2 posti ciascuno</strong> e le misure massime sono
     <strong>4 file di 10 posti ciascuno</strong>.
   </p>
-  <div *ngFor="let zona of conf">
-    <select>
-      {{
-        zona
-      }}
+  <div *ngFor="let zona of conf; index as i">
+    {{ zona }}:
+    <select style="margin-left: 10px;" (change)="valore_selezionato($event, i)">
       <option disabled selected></option>
-      <option *ngFor="let numero of conf" [value]="numero">
-        {{ numero }}
-      </option>
-    </select>
-  </div>
-  <div *ngFor="let zona of ['platea', 'palco']">
-    <select
-      (change)="
-        valore_selezionato($event, zona, conf.length == 3 ? 'f_' : 'p_')
-      "
-    >
-      <option disabled selected>
-        {{ conf.length == 3 ? 'File' : 'Posti' }} {{ zona }}
-      </option>
-      <option *ngFor="let numero of conf" [value]="numero">
+      <option *ngFor="let numero of i % 2 == 0 ? file : posti" [value]="numero">
         {{ numero }}
       </option>
     </select>
