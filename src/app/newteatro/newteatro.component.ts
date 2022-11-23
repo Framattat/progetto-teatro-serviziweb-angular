@@ -20,7 +20,6 @@ export class NewteatroComponent implements OnInit {
   avviso: string = '';
 
   valore_selezionato(valore, config) {
-    console.log(valore.target.value, config);
     switch (config) {
       case 'f_platea': {
         this.teatro_config[0] = +valore.target.value;
@@ -46,7 +45,6 @@ export class NewteatroComponent implements OnInit {
   nuovo_teatro() {
     this.db.newDb().subscribe({
       next: (res: any) => {
-        console.log(this.teatro_config);
         var teatro_costruzione = new NominativoComponent(this.db);
         var teatro_temp = teatro_costruzione.costruzione_teatro(
           this.teatro_config[0],
@@ -58,7 +56,6 @@ export class NewteatroComponent implements OnInit {
         this.avviso = '';
         this.stato_uscita.emit(1);
         this.key_uscita.emit(res);
-        console.log(res, teatro_temp);
       },
       error: (error) => {
         this.avviso =
